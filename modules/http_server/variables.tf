@@ -14,4 +14,5 @@
 
 
 variable "srvproject" {}
+variable "hostproject" {}
 variable "subnet" {}
