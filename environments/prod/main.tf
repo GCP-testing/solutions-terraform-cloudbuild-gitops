@@ -18,7 +18,6 @@ locals {
 }
 
 provider "google" {
-  project = "${var.srvproject}"
 }
 
 module "vpc" {
@@ -29,12 +28,12 @@ module "vpc" {
 
 module "http_server" {
   source  = "../../modules/http_server"
-  project = "${var.srvproject}"
+  srvproject = "${var.srvproject}"
   subnet  = "${module.vpc.subnet}"
 }
 
 module "firewall" {
   source  = "../../modules/firewall"
-  project = "${var.hostproject}"
+  hostproject = "${var.hostproject}"
   subnet  = "${module.vpc.subnet}"
 }
