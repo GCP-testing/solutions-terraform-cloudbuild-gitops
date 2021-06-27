@@ -18,23 +18,23 @@ locals {
 }
 
 provider "google" {
-  project = "${var.project}"
+  project = "${var.srvproject}"
 }
 
 module "vpc" {
   source  = "../../modules/vpc"
-  project = "${var.project}"
+  project = "${var.hostproject}"
   env     = "${local.env}"
 }
 
 module "http_server" {
   source  = "../../modules/http_server"
-  project = "${var.project}"
+  project = "${var.srvproject}"
   subnet  = "${module.vpc.subnet}"
 }
 
 module "firewall" {
   source  = "../../modules/firewall"
-  project = "${var.project}"
+  project = "${var.hostproject}"
   subnet  = "${module.vpc.subnet}"
 }
